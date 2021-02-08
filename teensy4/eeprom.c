@@ -225,7 +225,7 @@ static void flash_wait()
 {
 	FLEXSPI_LUT60 = LUT0(CMD_SDR, PINS1, 0x05) | LUT1(READ_SDR, PINS1, 1); // 05 = read status
 	FLEXSPI_LUT61 = 0;
-	uint8_t status;
+	volatile uint8_t status = 0;
 	do {
 		FLEXSPI_IPRXFCR = FLEXSPI_IPRXFCR_CLRIPRXF; // clear rx fifo
 		FLEXSPI_IPCR0 = 0;
